@@ -2,13 +2,13 @@
 
 namespace App\Controllers;
 
-error_reporting(-1);
-
 class Home extends BaseController
 {
 
 	public function __construct()
 	{
+
+		helper('form');
 		/*$this->load->library('session');
 
 		if ( $this->session->logged_in )
@@ -27,6 +27,7 @@ class Home extends BaseController
 
 	public function index()
 	{
+
 		//      dd($this->request);
 		//      $this->load->helper('form_helper');
 		$data = [
@@ -56,4 +57,14 @@ class Home extends BaseController
 			show404();
 		}
 	}*/
+
+	/**
+	 *
+	 */
+	public function login()
+	{
+		echo form_open('login', '');
+		echo form_input('firstName', '', '');;
+		echo form_close();
+	}
 }
