@@ -2,47 +2,75 @@
 
 namespace App\Controllers;
 
-error_reporting(-1);
+use App\Models\StudentModel;
+use CodeIgniter\Controller;
+use \Config\Database;
+use config\Services;
 
-class Home extends BaseController
+class Home extends Controller
 {
+
+	protected $homeModel;
+	protected $session;
+	protected $db;
 
 	public function __construct()
 	{
-		/*$this->load->library('session');
-
-		if ( $this->session->logged_in )
-		{
-			// Dans ce cas de figure, le fait qu'un utilisateur est connecté se vérifie si session->logged_in est à 1. Dans tous les autres cas, on passera au ELSE.
-		}
-		else
-		{
-			$this->load->helper('url');
-			// Retour direct à la page d'accueil (ou pourquoi pas à une page de connexion)
-			redirect('/');
-		}*/
-		/*if (! isAdmin())
-			echo('Not allowed to see this page');*/
+		$this->db = new Database();
+		helper(['url', 'forms', 'security']);
+		$this->session = Services::session();
+		var_dump($this->db);
+		$this->homeModel = new StudentModel();
 	}
+
 
 	public function index()
 	{
-		//      dd($this->request);
-		//      $this->load->helper('form_helper');
-		$data = [
-			'pseudo'   => 'Arthur',
-			'email'    => 'dd@dd.dd',
-			'en_ligne' => true,
-		];
+		var_dump('dd');
+		echo view('home/index', null);
 
-		return view('home/vue', $data);
-		//      $this->load->view('home/vue', $data);
+
 	}
 
-	public function home()
+
+	public function login()
 	{
-		redirect('home');
+		$validation = Services::validation();
+		$validation->setRules(
+			['userName' => ['label' => 'first name', 'rules' => 'required|alpha|min_length[8]']],
+			['lastName' => ['label' => 'Last name', 'rules' => 'required|alpha|min_length[8]']]
+		);
+
+
+		if (!$validation->run()) {
+			redirect('home');
+		} else {
+			echo 'success';
+		}
 	}
+
+	public function logout()
+	{
+
+	}
+
+	public function buildLoginForm()
+	{
+		helper('form');
+		echo form_open('/home/login', 'method = "POST"');
+		echo form_hidden('hidden_1', '', true);
+		echo form_input('name[]', 'dd', 'placeholder = "dd"');
+		echo form_input(array('name' => 'dd', 'id' => 'dd', 'class' => '', 'value' => 'dd'));
+		echo form_checkbox('chk_1', 'val_1', TRUE);
+		echo form_dropdown('', '', 'default');;
+		echo form_upload('file[]', '', '');
+		echo form_multiselect('', '', '', '');
+		echo form_close();
+	}
+
+
+
+
 	/*public function _output($output)
 	{
 

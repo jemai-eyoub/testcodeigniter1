@@ -63,7 +63,7 @@ class AutoloaderTest extends \CIUnitTestCase
 		$auto_loader = \CodeIgniter\Config\Services::autoloader();
 		// $auto_loader->register();
 		// look for Home controller, as that should be in base repo
-		$actual   = $auto_loader->loadClass('App\Controllers\Home');
+		$actual   = $auto_loader->loadClass('App\Controllers\MainController');
 		$expected = APPPATH . 'Controllers/Home.php';
 		$this->assertSame($expected, $actual);
 	}
@@ -77,7 +77,7 @@ class AutoloaderTest extends \CIUnitTestCase
 		$auto_loader->initialize(new Autoload(), new Modules());
 		$auto_loader->register();
 		// look for Home controller, as that should be in base repo
-		$actual   = $auto_loader->loadClass('App\Controllers\Home');
+		$actual   = $auto_loader->loadClass('App\Controllers\MainController');
 		$expected = APPPATH . 'Controllers/Home.php';
 		$this->assertSame($expected, $actual);
 	}
@@ -86,7 +86,7 @@ class AutoloaderTest extends \CIUnitTestCase
 
 	public function testExistingFile()
 	{
-		$actual   = $this->loader->loadClass('App\Controllers\Home');
+		$actual   = $this->loader->loadClass('App\Controllers\MainController');
 		$expected = APPPATH . 'Controllers/Home.php';
 		$this->assertSame($expected, $actual);
 
@@ -99,7 +99,7 @@ class AutoloaderTest extends \CIUnitTestCase
 
 	public function testMatchesWithPreceedingSlash()
 	{
-		$actual   = $this->loader->loadClass('\App\Controllers\Home');
+		$actual   = $this->loader->loadClass('\App\Controllers\MainController');
 		$expected = APPPATH . 'Controllers/Home.php';
 		$this->assertSame($expected, $actual);
 	}
