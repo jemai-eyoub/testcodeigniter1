@@ -430,8 +430,8 @@ class RouterTest extends \CIUnitTestCase
 	 */
 	public function testRouteOrder()
 	{
-		$this->collection->post('auth', 'Main::auth_post');
-		$this->collection->add('auth', 'Main::index');
+		$this->collection->post('auth', 'MainController::auth_post');
+		$this->collection->add('auth', 'MainController::index');
 
 		$router = new Router($this->collection, $this->request);
 		$this->collection->setHTTPVerb('post');

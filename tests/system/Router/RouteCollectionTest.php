@@ -1348,7 +1348,7 @@ class RouteCollectionTest extends \CIUnitTestCase
 		$routes->get('/', 'Home::index');
 
 		// the second rule applies, so overwrites the first
-		$expects = '\App\Controllers\Home';
+		$expects = '\App\Controllers\MainController';
 
 		$this->assertEquals($expects, $router->handle('/'));
 	}

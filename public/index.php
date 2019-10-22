@@ -1,5 +1,8 @@
 <?php
 
+// Use dubug bar
+$useKint = true;
+
 // Valid PHP Version?
 $minPHPVersion = '7.2';
 if (phpversion() < $minPHPVersion)
@@ -29,6 +32,7 @@ $pathsPath = FCPATH . '../app/Config/Paths.php';
 chdir(__DIR__);
 
 // Load our paths config file
+
 require $pathsPath;
 $paths = new Config\Paths();
 

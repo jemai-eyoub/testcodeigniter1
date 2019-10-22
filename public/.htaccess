@@ -1,3 +1,7 @@
+
+SetEnv CI_ENVIRONMENT development
+# SetEnv CI_ENVIRONMENT production
+
 # Disable directory browsing
 Options All -Indexes
 

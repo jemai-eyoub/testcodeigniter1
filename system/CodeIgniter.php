@@ -82,7 +82,7 @@ class CodeIgniter
 	protected $totalTime;
 
 	/**
-	 * Main application configuration
+	 * MainController application configuration
 	 *
 	 * @var \Config\App
 	 */

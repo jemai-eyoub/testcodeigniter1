@@ -5,19 +5,12 @@
 	<meta name="viewport"
 		  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>vue</title>
+	<title>Document</title>
 </head>
 <body>
-<ul>
-	<li><?php echo $pseudo; ?></li>
-	<li><?php echo $email; ?></li>
-	<li><?php echo $en_ligne; ?></li>
-</ul>
 
-<ul>
-	<a href="<?php echo site_url(); ?>">index</a>
-	<a href="<?php echo site_url('home'); ?>">acceuil</a>
-</ul>
-
+<?php
+var_dump($data);
+?>
 </body>
 </html>

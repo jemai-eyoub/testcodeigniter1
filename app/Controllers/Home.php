@@ -2,31 +2,56 @@
 
 namespace App\Controllers;
 
-class Home extends BaseController
+
+use App\Models\StudentModel;
+use CodeIgniter\Controller;
+use config\Database;
+use config\Services;
+
+class Home extends Controller
 {
+
+	protected $homeModel;
+	protected $session;
+	protected $db;
 
 	public function __construct()
 	{
-
-		helper('form');
-		/*$this->load->library('session');
-
-		if ( $this->session->logged_in )
-		{
-			// Dans ce cas de figure, le fait qu'un utilisateur est connecté se vérifie si session->logged_in est à 1. Dans tous les autres cas, on passera au ELSE.
-		}
-		else
-		{
-			$this->load->helper('url');
-			// Retour direct à la page d'accueil (ou pourquoi pas à une page de connexion)
-			redirect('/');
-		}*/
-		/*if (! isAdmin())
-			echo('Not allowed to see this page');*/
+		helper(['url', 'forms', 'security']);
+		$this->session = Services::session();
+		$this->homeModel = new StudentModel();
+//		trace();
 	}
+
 
 	public function index()
 	{
+		$dd = 'dd';
+		echo view('home/index', ['data' => $dd]);
+
+
+	}
+
+
+	public function login()
+	{
+		$validation = Services::validation();
+		$validation->setRules(
+			['userName' => ['label' => 'first name', 'rules' => 'required|alpha|min_length[8]']],
+			['lastName' => ['label' => 'Last name', 'rules' => 'required|alpha|min_length[8]']]
+		);
+
+
+		if (!$validation->run()) {
+			redirect('/');
+		} else {
+			echo 'success';
+		}
+	}
+
+	public function logout()
+	{
+		$this->db = \Config\Database::connect('default');
 
 		//      dd($this->request);
 		//      $this->load->helper('form_helper');
@@ -36,35 +61,39 @@ class Home extends BaseController
 			'en_ligne' => true,
 		];
 
-		return view('home/vue', $data);
+		return view('home', $data);
 		//      $this->load->view('home/vue', $data);
 	}
 
-	public function home()
+	public function buildLoginForm()
 	{
-		redirect('home');
+		helper('form');
+		echo form_open('/home/login', 'method = "POST"');
+		echo form_hidden('hidden_1', '', true);
+		echo form_input('name[]', 'dd', 'placeholder = "dd"');
+		echo form_input(array('name' => 'dd', 'id' => 'dd', 'class' => '', 'value' => 'dd'));
+		echo form_checkbox('chk_1', 'val_1', TRUE);
+		echo form_dropdown('', '', 'default');;
+		echo form_upload('file[]', '', '');
+		echo form_multiselect('', '', '', '');
+		echo form_close();
 	}
+
+
+
+
 	/*public function _output($output)
 	{
 
 	}*/
 
-	/*public function _remap($method)
-	{
-		if (method_exists(Home::class, $method)) {
-			$this->$method();
-		} else {
-			show404();
-		}
-	}*/
+		/*public function _remap($method)
+		{
+			if (method_exists(Home::class, $method)) {
+				$this->$method();
+			} else {
+				show404();
+			}
+		}*/
 
-	/**
-	 *
-	 */
-	public function login()
-	{
-		echo form_open('login', '');
-		echo form_input('firstName', '', '');;
-		echo form_close();
-	}
 }

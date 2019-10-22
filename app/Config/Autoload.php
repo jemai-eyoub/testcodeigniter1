@@ -68,10 +68,12 @@ class Autoload extends \CodeIgniter\Config\AutoloadConfig
 		 * Prototype:
 		 *
 		 *   $Config['classmap'] = [
-		 *       'MyClass'   => '/path/to/class/file.php'
+		 *       'MyClass'   => '/path/to/class/file.php',
 		 *   ];
 		 */
-		$classmap = [];
+		$classmap = [
+			'Markdown' => APPPATH .'third_party/markdown.php'
+		];
 
 		//--------------------------------------------------------------------
 		// Do Not Edit Below This Line

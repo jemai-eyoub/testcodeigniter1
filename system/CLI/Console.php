@@ -47,7 +47,7 @@ class Console
 {
 
 	/**
-	 * Main CodeIgniter instance.
+	 * MainController CodeIgniter instance.
 	 *
 	 * @var CodeIgniter
 	 */
