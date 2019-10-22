@@ -58,7 +58,7 @@ if (file_exists(SYSTEMPATH . 'Config/Routes.php'))
  * only routes that have been defined here will be available.
  */
 $routes->setDefaultNamespace('App\Controllers');
-$routes->setDefaultController('HomeController');
+$routes->setDefaultController('Pages');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
@@ -72,25 +72,29 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
+$routes->get('/', 'Pages::index');
 
-//$routes->group('', ['namespace' => 'App\Controllers'], function($routes) {
+$routes->group('', ['namespace' => 'App\Controllers'], function ($routes) {
+	//home
+	$routes->get('/', 'Pages::index');
+	$routes->get('/[a-z]*', 'Pages::index/$1');
+	//  $routes->get('/(:alpha)', 'Pages::index/$1');
 
 	//Auth
-//	$routes->get('login', 'AuthController::login', ['as' => 'login']);
-//	$routes->post('login', 'AuthController::attemptLogin');
-//	$routes->get('logout', 'AuthController::logout');
-
-	// Registration
-//	$routes->get('register', 'AuthController::register', ['as' => 'register']);
-//	$routes->post('register', 'AuthController::attemptRegister');
-
-	// Forgot/Resets
-//	$routes->get('forgot', 'AuthController::forgotPassword', ['as' => 'forgot']);
-//	$routes->post('forgot', 'AuthController::attemptForgot');
-//	$routes->get('reset-password', 'AuthController::resetPassword', ['as' => 'reset-password']);
-//	$routes->post('reset-password', 'AuthController::attemptReset');
-//	});
+	//  $routes->get('login', 'AuthController::login', ['as' => 'login']);
+	//  $routes->post('login', 'AuthController::attemptLogin');
+	//  $routes->get('logout', 'AuthController::logout');
+	//
+	//   Registration
+	//  $routes->get('register', 'AuthController::register', ['as' => 'register']);
+	//  $routes->post('register', 'AuthController::attemptRegister');
+	//
+	//   Forgot/Resets
+	//  $routes->get('forgot', 'AuthController::forgotPassword', ['as' => 'forgot']);
+	//  $routes->post('forgot', 'AuthController::attemptForgot');
+	//  $routes->get('reset-password', 'AuthController::resetPassword', ['as' => 'reset-password']);
+	//  $routes->post('reset-password', 'AuthController::attemptReset');
+});
 
 include APPPATH . 'Config/RoutesAdmin.php';
 
