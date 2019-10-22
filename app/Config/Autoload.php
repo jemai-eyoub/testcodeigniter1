@@ -72,7 +72,7 @@ class Autoload extends \CodeIgniter\Config\AutoloadConfig
 		 *   ];
 		 */
 		$classmap = [
-			'Markdown' => APPPATH .'third_party/markdown.php'
+			'Markdown' => APPPATH . 'third_party/markdown.php',
 		];
 
 		//--------------------------------------------------------------------

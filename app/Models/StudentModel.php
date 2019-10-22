@@ -2,7 +2,6 @@
 
 use CodeIgniter\Model;
 
-
 class StudentModel extends Model
 {
 	protected $table = 'students';
@@ -10,6 +9,5 @@ class StudentModel extends Model
 	public function index()
 	{
 		$this->db->table('students');
-
 	}
 }

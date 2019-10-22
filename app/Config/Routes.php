@@ -92,10 +92,7 @@ $routes->get('/', 'Home::index');
 //	$routes->post('reset-password', 'AuthController::attemptReset');
 //	});
 
-
-include APPPATH.'Config/RoutesAdmin.php';
-
-
+include APPPATH . 'Config/RoutesAdmin.php';
 
 /**
  * --------------------------------------------------------------------
