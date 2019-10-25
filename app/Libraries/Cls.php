@@ -1,22 +1,21 @@
 <?php
 
-namespace App\Libraries;
-
-defined('BASEPATH') || exit('No direct script access allowed');
 
 class Cls
 {
-	protected $ci;
 
-	public function __construct()
+	public function cls1()
 	{
-		$this->ci =& get_instance();
+		// $ci =& get_instance();
+		helper('assets');
+		//$this->getArrayHelepr();
+		cssUrl();
+		$this->cls2();
 	}
 
-	public function dd1()
+	public function cls2()
 	{
-		$this->ci->$this->load->helper('assets');
-		$this->assets->getArrayHelepr();
+		d('dd1');
 	}
 
 }

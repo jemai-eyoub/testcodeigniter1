@@ -1,18 +1,22 @@
 <?php
 
-function cssUrl()
+if (! function_exists('cssUrl'))
 {
-	$db      = \Config\Database::connect();
-	$builder = $db->table('students');
-	$builder->get();
-	echo $db->getLastQuery();
+	function cssUrl()
+	{
+		d('dd');
+	}
 }
 
-/*function getArrayHelepr()
+if (! function_exists('getArrayHelepr'))
 {
-	$CI =& get_instance();
-	$CI->load->helper('array');
-	$ci = $CI->load->library('Cls');
+	function getArrayHelepr()
+	{
+		//  $CI =& get_instance();
+		//  $CI->load->library('Cls');
+		//  $CI->cls1();
 
-	$ci->dd1();
-}*/
+		$cl = new Cls();
+		$cl->cls2();
+	}
+}

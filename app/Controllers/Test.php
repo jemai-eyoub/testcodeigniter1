@@ -9,23 +9,25 @@ class Test extends Controller
 {
 
 	protected $db;
-	protected $cls;
 
 	public function __construct()
 	{
-		// To use outside Model View Controller classes [THE SUPER OBJECT CI]
-		//      $CI =& get_instance();
-		//      $CI->load->helper('url');
-		//      $CI->log_message('', 'message');
 		$this->db = Database::connect();
+		//       To use outside Model View Controller classes [THE SUPER OBJECT CI]
+		//            $CI =& get_instance();
+		//            $CI->load->helper('url');
+		//            $CI->log_message('', 'message');
+		//      $cls = new \Cls();
+		//      $cls->cls1();
+		//      helper('assets');
+		//      cssUrl();
+		//      getArrayHelepr();
 
-		//helper('assets');
-		//$this->cls = new Cls();
-		//$this->cls->dd1();
-	}
+}
 
-	public function query()
+	public function query() : void
 	{
+		cssUrl();
 		// Query generator
 		$query    = $this->db->query('select * from students where id in ? and name like ?', [[1, 2], 's%']);
 		$students = $query->getResult();
@@ -50,18 +52,28 @@ class Test extends Controller
 			echo $student['date'];
 			echo $student['update'] . '<br>';
 		}
+		$this->db->close();
 	}
 
-	public function queryBuilder()
+	public function queryBuilder() : void
 	{
 		$builder = $this->db->table('students');
-		$builder->where('age', 25);
-		$builder->get();
+		$builder->select(['id', 'name', 'subject'])
+			->where(['name' => 'adel', 'id' => 1])  // AND
+			->orWhere('id', 12)
+			->orWhere('name', 'dd dd');
+		$res = $builder->get()->getResult();
+		d($this->db->getLastQuery());
+		d($res);
 
-		$builder->selectAvg('age');
-		$builder->countAll();
-		$builder->get();
-		// Get ID of last inserted row
-		echo $this->db->getLastQuery() . ' ' . $this->db->insertID();
+		$builder1 = $this->db->table('students');
+		//      $res1 = $builder->select('age');
+		$res1 = $builder1->selectAvg('age');
+		//      $builder->countAll();
+		//      $res = $builder->get()->getResult();
+		 // Get ID of last inserted row
+		//      $this->db->insertID();
+		d($this->db->getLastQuery());
+		d($res1);
 	}
 }
