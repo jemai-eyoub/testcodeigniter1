@@ -76,8 +76,10 @@ $routes->get('/', 'Pages::index');
 
 $routes->group('', ['namespace' => 'App\Controllers'], function ($routes) {
 	//home
-	$routes->get('/', 'Pages::index');
-	$routes->get('/[a-z]*', 'Pages::index/$1');
+	$routes->get('/(\[a-zA-Z]*)', 'Pages::index/$1');
+	$routes->get('/test/q', 'Test::query');
+	$routes->get('/test/qb', 'Test::queryBuilder');
+
 	//  $routes->get('/(:alpha)', 'Pages::index/$1');
 
 	//Auth

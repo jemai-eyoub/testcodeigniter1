@@ -3,13 +3,17 @@
 namespace App\Controllers;
 
 use CodeIgniter\Controller;
+use CodeIgniter\Files\Exceptions\FileNotFoundException;
 
 class Pages extends Controller
 {
 
-	public function index($page = '')
+	public function index($page = 'posts')
 	{
-		$page = $page ?? 'posts';
+		if (! file_exists(APPPATH . 'Views/pages/' . $page . '.php'))
+		{
+			throw new FileNotFoundException();
+		}
 		echo view('pages/' . $page . '.php');
 	}
 
@@ -22,7 +26,7 @@ class Pages extends Controller
 		echo form_input(['name' => 'dd', 'id' => 'dd', 'class' => '', 'value' => 'dd']);
 		echo form_checkbox('chk_1', 'val_1', true);
 		echo form_dropdown('', '', 'default');
-		;
+
 		echo form_upload('file[]', '', '');
 		echo form_multiselect('', '', '', '');
 		echo form_close();

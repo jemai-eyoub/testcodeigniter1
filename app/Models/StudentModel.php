@@ -8,6 +8,9 @@ class StudentModel extends Model
 
 	public function index()
 	{
-		$this->db->table('students');
+	}
+
+	public function dd()
+	{
 	}
 }
